@@ -52,9 +52,9 @@ def create_md_file(name):
     if not os.path.exists(md_loc):
         os.makedirs(md_loc)
     
-    md_file = os.path.join(md_loc, name + '.md')
+    md_file = os.path.join(md_loc, 'readme' + '.md')
     with open(md_file, 'w') as f:
-        f.write('![{}](./{}/{})'.format(name, name,name+'.png'))
+        f.write('![{}](./{})'.format(name,name+'.png'))
     
     py_file = os.path.join(md_loc, name + '.py')
     with open(py_file, 'w') as f:
