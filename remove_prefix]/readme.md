@@ -1,0 +1,1 @@
+![remove_prefix]](./remove_prefix].png)

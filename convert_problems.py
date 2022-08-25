@@ -2,7 +2,7 @@
 
 import os  
 import argparse
-
+from PIL import Image, ImageChops
 from selenium import webdriver  
 from selenium.webdriver.chrome.options import Options
 
@@ -60,6 +60,14 @@ def create_md_file(name):
     with open(py_file, 'w') as f:
         f.write("# {}\n".format(name))
     
+    # trim the image
+    im_loc = os.path.join(name,name+'.png')
+    im = Image.open(im_loc)
+    im = trim(im)
+    im.save(im_loc)
+
+
+
 if __name__ == '__main__':
     main()
     
