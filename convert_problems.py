@@ -8,7 +8,7 @@ from selenium.webdriver.chrome.options import Options
 
 CHROME_PATH = '"C:\Program Files\Google\Chrome\Application\chrome.exe"'
 CHROMEDRIVER_PATH = 'chromedriver.exe'
-WINDOW_SIZE = "1920,1080"
+# WINDOW_SIZE = "1920,1080"
 
 chrome_options = Options()  
 chrome_options.add_argument("--headless")
@@ -57,10 +57,10 @@ def main():
 
     sloc = "{}/{}.png".format(name,name)
     make_screenshot(url, sloc)
-    create_md_file(name)
+    create_md_file(url,name)
 
 
-def create_md_file(name):
+def create_md_file(url,name):
     # ![image info](./pictures/image.png)
 
     md_loc = os.path.join(name)
@@ -69,7 +69,7 @@ def create_md_file(name):
     
     md_file = os.path.join(md_loc, 'readme' + '.md')
     with open(md_file, 'w') as f:
-        f.write('![{}](./{})'.format(name,name+'.png'))
+        f.write('### url: {}\n ![{}](./{})'.format(url,name,name+'.png'))
     
     py_file = os.path.join(md_loc, name + '.py')
     with open(py_file, 'w') as f:
