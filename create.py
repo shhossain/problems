@@ -1,7 +1,6 @@
 # Install chromedriver from https://sites.google.com/a/chromium.org/chromedriver/downloads
 
 import os  
-import argparse
 
 from selenium import webdriver  
 from selenium.webdriver.chrome.options import Options
@@ -41,25 +40,6 @@ def make_screenshot(url, output):
     driver.close()
 
 
-
-def main():
-    parser = argparse.ArgumentParser(description='Convert problems to md files')
-    parser.add_argument('-u', '--url', help='url of the problem', required=True)
-    # problem name
-    parser.add_argument('-n', '--name', help='problem name', required=True)
-    args = parser.parse_args()
-    url = args.url
-    name = args.name
-
-    screen_loc = os.path.join(name)
-    if not os.path.exists(screen_loc):
-        os.makedirs(screen_loc)
-
-    sloc = "{}/{}.png".format(name,name)
-    make_screenshot(url, sloc)
-    create_md_file(url,name)
-
-
 def create_md_file(url,name):
     # ![image info](./pictures/image.png)
 
@@ -74,6 +54,20 @@ def create_md_file(url,name):
     py_file = os.path.join(md_loc, name + '.py')
     with open(py_file, 'w') as f:
         f.write("# {}\n".format(name))
+
+def main():
+    url = input('Enter url: ')
+    name = input('Enter name: ')
+
+    screen_loc = os.path.join(name)
+    if not os.path.exists(screen_loc):
+        os.makedirs(screen_loc)
+
+    sloc = "{}/{}.png".format(name,name)
+    make_screenshot(url, sloc)
+    create_md_file(url,name)
+
+
     
 if __name__ == '__main__':
     main()
