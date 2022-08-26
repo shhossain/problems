@@ -6,7 +6,7 @@ for i in range(5):
     matrix.append(list(map(int, input().split())))
 
 
-# destinatiob point 3,3
+# destinatiob point 3,3 - but beacause list start from 0, the point is 2,2
 dp = [2, 2]
 
 # find the locacaion of 1
